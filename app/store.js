@@ -5,6 +5,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
+import universalMiddleware from 'universalMiddleware'
 import sagaMiddleware from 'redux-saga';
 import sagas from './sagas';
 import createReducer from './reducers';
@@ -15,6 +16,7 @@ export default function configureStore(initialState = {}, history) {
   //    sagas folder and triggers them
   // 2. routerMiddleware: Syncs the location/URL path to the state
   const createStoreWithMiddleware = compose(
+    applyMiddleware(universalMiddleware),
     applyMiddleware(routerMiddleware(history), sagaMiddleware(...sagas)),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )(createStore);

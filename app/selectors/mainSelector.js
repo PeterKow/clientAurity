@@ -2,6 +2,6 @@
  * Select the entire state
  */
 
-const snippetSelector = (state) => state.get('main');
+const mainSelector = (state) => state.get('main');
 
-export default snippetSelector;
+export default mainSelector;

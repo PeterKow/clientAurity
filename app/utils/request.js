@@ -8,8 +8,12 @@ import 'whatwg-fetch';
  *
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request(url, options) {
-  return fetch(url, options)
+export default function request(url, { credentials = 'same-origin', method = 'get', ...other } = {}) {
+  return fetch(`http://localhost:8000/api${url}`, {
+    credentials,
+    method,
+    ...other,
+  })
     .then(checkStatus)
     .then(parseJSON)
     .then((data) => ({ data }))

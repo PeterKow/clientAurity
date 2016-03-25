@@ -54,7 +54,9 @@ module.exports = (options) => ({
       'selectors',
       'sagas',
       'assets',
+      'businessLogic',
       'node_modules',
+      'utils',
     ],
     extensions: [
       '',

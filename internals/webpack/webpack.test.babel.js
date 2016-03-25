@@ -59,12 +59,14 @@ module.exports = {
   },
   resolve: {
     modulesDirectories: [
+      'businessLogic',
       'containers',
       'components',
       'selectors',
       'sagas',
       'assets',
       'node_modules',
+      'utils',
     ],
     alias: {
       // required for enzyme to work properly

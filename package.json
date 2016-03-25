@@ -7,6 +7,7 @@
     "fontfaceobserver": "^1.6.3",
     "history": "^2.0.0",
     "immutable": "^3.7.6",
+    "keymirror": "^0.1.1",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-pure-render": "^1.0.2",
@@ -143,15 +144,28 @@
       }
     },
     "rules": {
-      "comma-dangle": [2, "always-multiline"],
-      "indent": [2, 2, {"SwitchCase": 1}],
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ],
+      "indent": [
+        2,
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
       "no-console": 0,
       "react/prop-types": 0,
       "max-len": 0,
       "prefer-template": 0,
-      "no-use-before-define": 0,
       "newline-per-chained-call": 0,
-      "arrow-body-style": [2, "as-needed"]
+      "arrow-body-style": [
+        2,
+        "as-needed"
+      ],
+      "semi": 0,
+      "no-use-before-define": [2, "nofunc"]
     }
   },
   "jscsConfig": {
@@ -168,7 +182,8 @@
       "coverage/**",
       "docs/**",
       "node_modules/**"
-    ]
+    ],
+    "requireSemicolons": false
   },
   "stylelint": {
     "extends": "stylelint-config-standard",
