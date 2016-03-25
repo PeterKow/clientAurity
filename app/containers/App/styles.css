@@ -2,8 +2,11 @@
 
 html,
 body {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 22px;
 }
 
 body {
@@ -20,23 +23,46 @@ body.fontLoaded {
   width: 100%;
 }
 
-.wrapper {
-  max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 100%;
-  padding: 0 16px;
-  flex-direction: column;
+
+.containerMain {
+    width: 750px;
+    overflow: hidden;
 }
 
-.logoWrapper {
-  padding: 2em 0;
+@media screen and (min-width: 768px) {
+    .containerMain {
+        width: 750px;
+        overflow: hidden;
+    }
+    body {
+        font-size: 22px;
+    }
+
 }
 
-.logo {
-  max-height: 5em;
-  margin: 0 auto;
-  display: block;
+@media screen and (min-width: 980px) {
+    .containerMain {
+        width: 960px;
+    }
+    body {
+        font-size: 22px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .containerMain {
+        width: 1170px;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .containerMain {
+        width: 1480px;
+    }
+}
+.containerMain {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }

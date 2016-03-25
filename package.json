@@ -4,12 +4,14 @@
   "description": "Quick setup for new React.js applications featuring Redux, hot–reloading, PostCSS, react-router and Mocha.",
   "dependencies": {
     "babel-polyfill": "^6.3.14",
+    "firebase": "^2.4.1",
     "fontfaceobserver": "^1.6.3",
     "history": "^2.0.0",
     "immutable": "^3.7.6",
     "keymirror": "^0.1.1",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
+    "react-linkify": "^0.1.1",
     "react-pure-render": "^1.0.2",
     "react-redux": "^4.0.6",
     "react-router": "^2.0.0-rc5",
@@ -165,7 +167,10 @@
         "as-needed"
       ],
       "semi": 0,
-      "no-use-before-define": [2, "nofunc"]
+      "no-use-before-define": [
+        2,
+        "nofunc"
+      ]
     }
   },
   "jscsConfig": {
@@ -190,9 +195,18 @@
     "rules": {
       "color-hex-case": "upper",
       "string-quotes": "single",
-      "indent": [2, 2, {"SwitchCase": 1}],
+      "indent": [
+        2,
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
       "semi": 0,
-      "no-use-before-define": [2, "nofunc"]
+      "no-use-before-define": [
+        2,
+        "nofunc"
+      ]
     }
   }
 }

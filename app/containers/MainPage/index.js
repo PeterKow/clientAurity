@@ -13,6 +13,7 @@ import { createSelector } from 'reselect';
 import mainSelector from 'mainSelector';
 
 import Button from 'Button';
+import SnippetContainer from 'components/snippet/snippet.container'
 import styles from './styles.css';
 
 class MainPage extends React.Component {
@@ -20,6 +21,7 @@ class MainPage extends React.Component {
     const { dispatch } = this.props
     return (
       <div className={ styles.mainPage }>
+        <SnippetContainer />
         <Button onClick={ () => dispatch(push('/home')) } >Go to home</Button>
         <Button onClick={ () => dispatch(fetchTest()) } >Fetch test</Button>
       </div>

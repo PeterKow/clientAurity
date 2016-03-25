@@ -57,6 +57,7 @@ module.exports = (options) => ({
       'businessLogic',
       'node_modules',
       'utils',
+      'app',
     ],
     extensions: [
       '',
