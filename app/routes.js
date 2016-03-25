@@ -12,6 +12,23 @@ export default function createRoutes(store) {
       path: '/',
       getComponent: function get(location, cb) {
         require.ensure([], (require) => {
+          injectAsyncReducer(store, 'main', require('MainPage/reducer').default);
+          cb(null, require('MainPage').default);
+        }, 'MainPage');
+      },
+    },
+    {
+      path: '/snippet',
+      getComponent: function get(location, cb) {
+        require.ensure([], (require) => {
+          injectAsyncReducer(store, 'snippet', require('SnippetPage/reducer').default);
+          cb(null, require('SnippetPage').default);
+        }, 'SnippetPage');
+      },
+    }, {
+      path: '/home',
+      getComponent: function get(location, cb) {
+        require.ensure([], (require) => {
           injectAsyncReducer(store, 'home', require('HomePage/reducer').default);
           cb(null, require('HomePage').default);
         }, 'HomePage');
