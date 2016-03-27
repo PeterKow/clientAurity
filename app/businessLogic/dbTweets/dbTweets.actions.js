@@ -3,7 +3,7 @@ import actionTypes from './dbTweets.actionTypes'
 const { FETCH_TEST } = actionTypes
 
 export { fetchTest }
-console.log('FETCH_TEST', FETCH_TEST)
+
 function fetchTest(payload) {
   return ({ dispatch }) => {
     const action = {

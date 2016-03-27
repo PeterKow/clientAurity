@@ -5,14 +5,16 @@ import React, { Component, PropTypes } from 'react';
 
 export default class Filter extends Component {
   renderFilter(filter, name) {
-    if (filter === this.props.filter) {
-      return name;
-    }
 
     return (
-      <a href="#"
-         style={{color: 'black'}}
-         onClick={event => { event.preventDefault(); this.props.onFilterChange(filter); }}>
+      <a
+        href="#"
+        style={{ color: filter === this.props.filter ? 'blue' : 'black' }}
+        onClick={event => {
+          event.preventDefault()
+          this.props.onFilterChange(filter)
+        }}
+      >
         {name}
       </a>
     );

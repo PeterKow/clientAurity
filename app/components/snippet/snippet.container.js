@@ -4,7 +4,6 @@ import Filter from './elemets/filters'
 import SnippetList from 'components/snippet/snippetList'
 import { startFetchMiniArticles, setVisibilityFilter, VisibilityFilters } from 'businessLogic/snippets/snippets.actions'
 import { initSync, readUsers } from 'businessLogic/firebase/firebase'
-import { check } from 'businessLogic/tweeter/tweeterApi'
 
 import Firebase from 'firebase'
 var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/70345946');
@@ -13,13 +12,14 @@ window._source = 'firebase'
 
 function select(state) {
   return {
-    snippetList: selectMiniArticles(state.get('snippetList'), state.get('visibilityFilter')),
+    snippetList: selectSnippetsList(state.getIn(['snippetReducer', 'snippetList']), state.get('visibilityFilter')),
+    snippetIsFetching: state.getIn(['snippetReducer', 'isFetching']),
     visibilityFilter: state.get('visibilityFilter'),
     likedUserList: state.getIn(['user', 'likedUserList']),
   };
 }
 
-export default class MainPage extends Component {
+export default class SnippetContainer extends Component {
 
   componentWillMount() {
     const { dispatch } = this.props
@@ -42,18 +42,18 @@ export default class MainPage extends Component {
   }
 
   render() {
-    const { dispatch, snippetList, visibilityFilter, likedUserList } = this.props
-    const data = snippetList.length ? snippetList : []
-    const isFetching = !!snippetList.isFetching
+    const { dispatch, snippetList, visibilityFilter, likedUserList, snippetIsFetching } = this.props
     return (
       <div>
-        <button onClick={ check }>Check cron</button>
-        <SnippetList snippetList={ snippetList } />
         <Filter
           filter={visibilityFilter}
           onFilterChange={nextFilter =>
             dispatch(setVisibilityFilter(nextFilter))
           }
+        />
+        <SnippetList
+          snippetList={ snippetList }
+          isFetchin={ snippetIsFetching }
         />
       </div>
     );
@@ -62,9 +62,9 @@ export default class MainPage extends Component {
 
 //<Articles isFetching={isFetching} snippetList={data} likedUserList={ likedUserList }/>
 
-MainPage.propTypes = {
+SnippetContainer.propTypes = {
   dispatch: React.PropTypes.func,
-  snippetList: React.PropTypes.array,
+  snippetList: React.PropTypes.object,
   visibilityFilter: React.PropTypes.oneOf([
     'SHOW_ALL',
     'SHOW_COMPLETED',
@@ -72,17 +72,17 @@ MainPage.propTypes = {
   ]).isRequired,
 }
 
-function selectMiniArticles(snippetList, filter) {
+function selectSnippetsList(snippetList, filter) {
   switch (filter) {
     case VisibilityFilters.SHOW_ALL:
       return snippetList
     case VisibilityFilters.SHOW_COMPLETED:
-      return snippetList.filter(miniarticle => miniarticle.completed);
+      return snippetList.filter(snippet => snippet.completed);
     case VisibilityFilters.SHOW_ACTIVE:
-      return snippetList.filter(miniarticle => !miniarticle.completed);
+      return snippetList.filter(snippet => !snippet.completed);
     default:
       return snippetList
   }
 }
 
-export default connect(select)(MainPage)
+export default connect(select)(SnippetContainer)

@@ -3,10 +3,13 @@
  */
 import React, { PropTypes } from 'react'
 import Snippet from './snippet.js'
-import { syncTweet, saveTags } from 'businessLogic/firebase/firebase'
+import { syncTweet } from 'businessLogic/firebase/firebase'
+import LoadingIndicator from 'components/LoadingIndicator'
+export default function SnippetList({ onSnippetClick, snippetList, isFetching }) {
 
-export default function SnippetList({ onSnippetClick, snippetList }) {
   return (
+    isFetching ?
+    <LoadingIndicator /> :
     <ul style={{ WebkitPaddingStart: '0em' }}>
       {snippetList.map((miniArticle, index) =>
         <Snippet {...miniArticle}
@@ -24,7 +27,7 @@ export default function SnippetList({ onSnippetClick, snippetList }) {
 
 SnippetList.propTypes = {
   onSnippetClick: PropTypes.func.isRequired,
-  snippetList: PropTypes.array.isRequired,
+  snippetList: PropTypes.object.isRequired,
 }
 
 //TODO refactor to actions

@@ -8,7 +8,7 @@ import globalReducer from 'App/reducer';
 import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
-import { visibilityFilter, snippetList } from 'businessLogic/snippets/snippets.reducers'
+import { visibilityFilter, snippetReducer } from 'businessLogic/snippets/snippets.reducers'
 import user from 'businessLogic/user/user.reducers.js'
 
 /*
@@ -42,19 +42,13 @@ function routeReducer(state = routeInitialState, action) {
  * Creates the main reducer with the asynchronously loaded ones
  */
 
-const snippetReducer = combineReducers({
-
-})
-
 export default function createReducer(asyncReducers) {
   return combineReducers({
     route: routeReducer,
     visibilityFilter,
-    snippetList,
+    snippetReducer,
     user,
     global: globalReducer,
     ...asyncReducers,
   });
 }
-
-
