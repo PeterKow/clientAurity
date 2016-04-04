@@ -5,8 +5,7 @@ import React, { PropTypes } from 'react'
 import Snippet from './snippet.js'
 import { syncTweet } from 'businessLogic/firebase/firebase'
 import LoadingIndicator from 'components/LoadingIndicator'
-export default function SnippetList({ onSnippetClick, snippetList, isFetching }) {
-
+export default function SnippetList({ onSnippetClick = () => {}, snippetList, isFetching }) {
   return (
     isFetching ?
     <LoadingIndicator /> :
@@ -26,11 +25,12 @@ export default function SnippetList({ onSnippetClick, snippetList, isFetching })
 }
 
 SnippetList.propTypes = {
-  onSnippetClick: PropTypes.func.isRequired,
+  onSnippetClick: PropTypes.func,
   snippetList: PropTypes.object.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 }
 
-//TODO refactor to actions
+// TODO refactor to actions
 function setThumbUp(snippet) {
   snippet.thumbDown = false
   snippet.thumbUp = true

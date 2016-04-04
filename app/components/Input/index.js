@@ -8,10 +8,11 @@ import React from 'react';
 
 import styles from './styles.css';
 
-function Input({ onChange, value }) {
+function Input({ onChange, value, style, className }) {
   return (
     <input
-      className={ styles.input }
+      className={ className || styles.input }
+      style={ style }
       onChange={ onChange }
       value={ value}
     />

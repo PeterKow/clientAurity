@@ -7,7 +7,7 @@ export default function universalMiddleware({ dispatch, getState }) {
       return action.promise
         .then(
           payload => next({ payload, type: action.type + '_SUCCESS' }),
-          error => next({ error, type: action.type + '_FAILED' })
+          error => next({ error: error.error || error, type: action.type + '_FAILED' })
         )
         //.catch(error => {
         //  console.log('quiqup Middleware error, ', error)

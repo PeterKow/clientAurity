@@ -1,4 +1,4 @@
-import request from 'request'
+import fetch from 'request'
 import actionTypes from './dbTweets.actionTypes'
 const { FETCH_TEST } = actionTypes
 
@@ -8,7 +8,7 @@ function fetchTest(payload) {
   return ({ dispatch }) => {
     const action = {
       type: FETCH_TEST,
-      promise: request('/dbTest'),
+      promise: fetch('/dbTest'),
       payload,
     }
     return dispatch(action)

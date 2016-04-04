@@ -1,4 +1,5 @@
-import 'whatwg-fetch';
+import 'whatwg-fetch'
+import qs from 'qs'
 
 /**
  * Requests a URL, returning a promise
@@ -8,8 +9,11 @@ import 'whatwg-fetch';
  *
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request(url, { credentials = 'same-origin', method = 'get', ...other } = {}) {
-  return fetch(`http://localhost:8000/api${url}`, {
+export default function request(url, { credentials = 'same-origin', method = 'get', query, ...other } = {}) {
+  const queryString = qs.stringify(query)
+  const finalUrl = `http://localhost:8000/api${url}?${queryString}`
+
+  return fetch(finalUrl, {
     credentials,
     method,
     ...other,
