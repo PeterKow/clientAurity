@@ -7,3 +7,56 @@
 .buttonSave {
     margin-left: 5px;
 }
+
+:global
+.react-tagsinput {
+    width: 50%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    padding-left: 20px;
+    padding-top: 0px;
+    border-radius: 50px;
+    margin: 5px 0;
+}
+
+:global
+.react-tagsinput-tag {
+    background-color: 1px solid rgba(0, 126, 255, 0.24);
+    border-radius: 2px;
+    border: 1px solid rgba(0, 126, 255, 0.24);
+    color: #007eff;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 5px;
+}
+
+:global
+.react-tagsinput-remove {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+:global
+.react-tagsinput-tag a::before {
+    content: " ×";
+}
+
+:global
+.react-tagsinput-input {
+    background: transparent;
+    border: 0;
+    color: #007eff;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    margin-top: 1px;
+    outline: none;
+    padding: 5px;
+    width: 80px;
+}

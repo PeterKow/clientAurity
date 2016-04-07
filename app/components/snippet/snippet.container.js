@@ -65,6 +65,7 @@ export default class SnippetContainer extends Component {
           <div>
             <b>Total tweets: { snippetList.size }</b>
             <SnippetList
+              dispatch={ dispatch }
               snippetList={ snippetList }
               isFetching={ snippetIsFetching }
             />

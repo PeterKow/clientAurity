@@ -9,11 +9,15 @@ const { FETCH_SNIPPETS_STARTED, FETCH_SNIPPETS_SUCCESS, FETCH_SNIPPETS_FAILED } 
 const { FETCH_SNIPPETS_STANDARD_STARTED, FETCH_SNIPPETS_STANDARD_SUCCESS, FETCH_SNIPPETS_STANDARD_FAILED } = snippetsActionsTypes
 
 
-const initialState = fromJS({
-  isFetching: false,
-  snippetList: [],
-  fetchingError: '',
-}, createListIfPossible)
+const initialState = getInitialState()
+
+function getInitialState() {
+  return fromJS({
+    isFetching: false,
+    snippetList: [],
+    fetchingError: '',
+  }, createListIfPossible)
+}
 
 export function visibilityFilter(state = SHOW_ACTIVE, action = { type: undefined }) {
   switch (action.type) {
@@ -35,7 +39,7 @@ export function snippetReducer(state = initialState, action = { type: undefined}
     case FETCH_SNIPPETS_STANDARD_STARTED:
       return state.set('isFetching', true)
     case FETCH_SNIPPETS_STANDARD_SUCCESS:
-      return state.set('isFetching', false).set('snippetList', new List(action.payload.data.map(mapTwitterResponse)))
+      return getInitialState().set('snippetList', new List(action.payload.data.map(mapTwitterResponse)))
     case FETCH_SNIPPETS_STANDARD_FAILED:
       return state.merge({ isFetching: false, fetchingError: action.error })
 

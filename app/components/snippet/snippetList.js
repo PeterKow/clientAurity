@@ -5,7 +5,9 @@ import React, { PropTypes } from 'react'
 import Snippet from './snippet.js'
 import { syncTweet } from 'businessLogic/firebase/firebase'
 import LoadingIndicator from 'components/LoadingIndicator'
-export default function SnippetList({ onSnippetClick = () => {}, snippetList, isFetching }) {
+import { completeSnippet } from 'businessLogic/snippets/snippets.actions'
+
+export default function SnippetList({ dispatch, snippetList, isFetching }) {
   return (
     isFetching ?
     <LoadingIndicator /> :
@@ -13,7 +15,7 @@ export default function SnippetList({ onSnippetClick = () => {}, snippetList, is
       {snippetList.map((miniArticle, index) =>
         <Snippet {...miniArticle}
           key={index}
-          onClick={() => onSnippetClick(miniArticle.id_str)}
+          onClick={() => dispatch(completeSnippet(miniArticle.id_str))}
           onThumbDown={() => syncTweet(setThumbDown(miniArticle))}
           onThumbUp={() => syncTweet(setThumbUp(miniArticle))}
           onStared={() => syncTweet(setStar(miniArticle))}

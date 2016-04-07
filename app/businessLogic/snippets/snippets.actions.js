@@ -91,7 +91,7 @@ function fetchDbTweetsSearch(payload) {
   }
 }
 
-export function completeMiniArticle(id) {
+export function completeSnippet(id) {
   return { type: COMPLETE_MINI_ARTICLE, id };
 }
 

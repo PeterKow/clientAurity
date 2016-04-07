@@ -4,7 +4,7 @@ import Avatar from 'components/utils/avatar/avatar'
 import Image from 'components/utils/image/image'
 import Linkify from 'react-linkify'
 import TextLink from './elemets/text-link'
-import Tags from 'components/Tags'
+import Tags from 'components/Tags/tags'
 
 export default class Snippet extends Component {
   onTagChange = (e) => {
