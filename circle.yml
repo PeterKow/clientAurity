@@ -1,6 +1,8 @@
 machine:
   node:
     version: 5.0.0
+  npm:
+    version: 3.4.0
 
   environment:
     CONTINUOUS_INTEGRATION: true
