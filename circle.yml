@@ -7,3 +7,11 @@ machine:
   environment:
     CONTINUOUS_INTEGRATION: true
 
+deployment:
+  staging:
+    branch: master
+    codedeploy:
+      clientAurity:
+        application_root: /
+        region: us-west-2
+        deployment_group: devClient
