@@ -104,7 +104,7 @@
     "setup": "node ./internals/scripts/setup.js",
     "clean": "shjs ./internals/scripts/clean.js",
     "generate": "plop --plopfile internals/generators/index.js",
-    "prebuild": "npm run test",
+    "prebuild-noooooo": "npm run test",
     "pretest": "npm run lint",
     "lint-no": "npm run lint:js && npm run lint:css",
     "lint:js": "npm run lint:eslint && npm run lint:jscs",

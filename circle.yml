@@ -7,6 +7,10 @@ machine:
   environment:
     CONTINUOUS_INTEGRATION: true
 
+test:
+  post:
+    - npm run build
+
 deployment:
   staging:
     branch: master
