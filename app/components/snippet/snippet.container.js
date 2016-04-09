@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Filter from './elemets/filters'
 import Search from './elemets/search'
+import SearchText from './elemets/searchText'
 import SnippetList from 'components/snippet/snippetList'
-import { fetchSnippetsStandard, setVisibilityFilter, VisibilityFilters } from 'businessLogic/snippets/snippets.actions'
+import { fetchSnippetsStandard, setVisibilityFilter, VisibilityFilters, setVisibilityTextFilter } from 'businessLogic/snippets/snippets.actions'
 import { initSync, readUsers } from 'businessLogic/firebase/firebase'
 import styles from './styles.css'
 
@@ -14,10 +15,11 @@ window._source = 'firebase'
 
 function select(state) {
   return {
-    snippetList: selectSnippetsList(state.getIn(['snippetReducer', 'snippetList']), state.get('visibilityFilter')),
+    snippetList: searchText(selectSnippetsList(state.getIn(['snippetReducer', 'snippetList']), state.get('visibilityFilter')), state.getIn(['snippetReducer', 'searchText'])),
     snippetIsFetching: state.getIn(['snippetReducer', 'isFetching']),
     snippetFetchingError: state.getIn(['snippetReducer', 'fetchingError']),
     visibilityFilter: state.get('visibilityFilter'),
+    searchText: state.get('searchText'),
     likedUserList: state.getIn(['user', 'likedUserList']),
   };
 }
@@ -49,6 +51,12 @@ export default class SnippetContainer extends Component {
     //});
   }
 
+  onSearchText = (searchText) => {
+    this.setState({
+      searchText,
+    })
+  }
+
   render() {
     const { dispatch, snippetList, visibilityFilter, likedUserList, snippetIsFetching, snippetFetchingError } = this.props
     return (
@@ -59,7 +67,8 @@ export default class SnippetContainer extends Component {
             dispatch(setVisibilityFilter(nextFilter))
           }
         />
-        <Search/>
+        <Search />
+        <SearchText onChange={ (text) => dispatch(setVisibilityTextFilter(text)) } />
         { snippetFetchingError ?
           <div className={ styles.noData }>{ snippetFetchingError } </div> :
           <div>
@@ -99,6 +108,12 @@ function selectSnippetsList(snippetList, filter) {
     default:
       return snippetList
   }
+}
+
+function searchText(snippetList, searchText) {
+  return snippetList.filter(snippet => {
+    return snippet.text.match(new RegExp(searchText, 'i'))
+  })
 }
 
 export default connect(select)(SnippetContainer)

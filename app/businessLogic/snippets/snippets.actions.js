@@ -5,7 +5,7 @@ import fetch from 'request'
 
 
 import snippetsActionsTypes from './snippets.action-types'
-const { FETCH_SNIPPETS, FETCH_SNIPPETS_STANDARD } = snippetsActionsTypes
+const { FETCH_SNIPPETS, FETCH_SNIPPETS_STANDARD, SET_VISIBILITY_TEXT_FILTER } = snippetsActionsTypes
 
 export const COMPLETE_MINI_ARTICLE = 'COMPLETE_MINI_ARTICLE';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
@@ -29,6 +29,7 @@ export const VisibilityFilters = {
 
 export { fetchSnippetsStandard }
 export { fetchDbTweetsSearch }
+export { setVisibilityTextFilter }
 
 function fetchSnippetsStandard(payload) {
   return ({ dispatch }) => {
@@ -97,6 +98,10 @@ export function completeSnippet(id) {
 
 export function setVisibilityFilter(filter) {
   return { type: SET_VISIBILITY_FILTER, filter };
+}
+
+export function setVisibilityTextFilter(filter) {
+  return { type: SET_VISIBILITY_TEXT_FILTER, filter };
 }
 
 export function fetchMiniArticles(payload) {

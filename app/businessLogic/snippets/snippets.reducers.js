@@ -5,7 +5,7 @@ import { syncTweet } from 'businessLogic/firebase/firebase'
 const { SHOW_ACTIVE } = VisibilityFilters
 
 import snippetsActionsTypes from './snippets.action-types'
-const { FETCH_SNIPPETS_STARTED, FETCH_SNIPPETS_SUCCESS, FETCH_SNIPPETS_FAILED } = snippetsActionsTypes
+const { FETCH_SNIPPETS_STARTED, FETCH_SNIPPETS_SUCCESS, FETCH_SNIPPETS_FAILED, SET_VISIBILITY_TEXT_FILTER } = snippetsActionsTypes
 const { FETCH_SNIPPETS_STANDARD_STARTED, FETCH_SNIPPETS_STANDARD_SUCCESS, FETCH_SNIPPETS_STANDARD_FAILED } = snippetsActionsTypes
 
 
@@ -16,6 +16,7 @@ function getInitialState() {
     isFetching: false,
     snippetList: [],
     fetchingError: '',
+    searchText: undefined,
   }, createListIfPossible)
 }
 
@@ -61,15 +62,21 @@ export function snippetReducer(state = initialState, action = { type: undefined}
       return state.set('isFetching', false).set('snippetList', new List(action.data))
     case FETCH_MINI_ARTICLES_FAILED:
       return state.set('fetchingError', action.data)
-    case COMPLETE_MINI_ARTICLE:
-      const newState = state.get('snippetsList').toFIXmeDudeImmutable().map(miniArticle =>
-        miniArticle.id_str === action.id ?
-        { ...miniArticle, completed: !miniArticle.completed } :
-          miniArticle
-      )
-      console.log('NO SYNC TO firebase!!')
-      //syncWithFirebase(newState, action.id)
-      return newState
+    case SET_VISIBILITY_TEXT_FILTER:
+
+      return state.set('searchText', action.filter)
+
+      //console.log('sni', newState)
+      //return state.set('snippetList',newState)
+    //case COMPLETE_MINI_ARTICLE:
+    //  const newState = state.get('snippetsList').toFIXmeDudeImmutable().map(miniArticle =>
+    //    miniArticle.id_str === action.id ?
+    //    { ...miniArticle, completed: !miniArticle.completed } :
+    //      miniArticle
+    //  )
+    //  console.log('NO SYNC TO firebase!!')
+    //  //syncWithFirebase(newState, action.id)
+    //  return newState
     case UPDATE_ARTICLE_SUCCESS:
       return state.get('snippetsList').toFIXmeDudeImmutable_UPDATE_ARTICLE_SUCCESS().map(miniArticle =>
         miniArticle.id_str === action.payload.id_str ? action.payload : miniArticle

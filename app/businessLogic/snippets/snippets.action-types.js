@@ -9,6 +9,7 @@ const snippetsActionsTypes = new KeyMirror({
   FETCH_SNIPPETS_STANDARD_STARTED: null,
   FETCH_SNIPPETS_STANDARD_SUCCESS: null,
   FETCH_SNIPPETS_STANDARD_FAILED: null,
+  SET_VISIBILITY_TEXT_FILTER: null,
 })
 
 Object.freeze(snippetsActionsTypes)
