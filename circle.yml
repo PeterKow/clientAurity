@@ -19,5 +19,4 @@ deployment:
             bucket: client-aurity
             key_pattern: dev/client-{SHORT_COMMIT}-{BUILD_NUM}
         region: us-west-2
-        deployment_group: staging-instances
-        deployment_config: client-aurity-dev
+        deployment_group: client-aurity-dev
