@@ -11,7 +11,7 @@ deployment:
   staging:
     branch: master
     codedeploy:
-      clientAurity:
+      client-aurity:
         application_root: /
         region: us-west-2
-        deployment_group: devClient
+        deployment_group: client-aurity-dev
