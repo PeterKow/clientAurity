@@ -15,7 +15,7 @@ deployment:
   staging:
     branch: master
     codedeploy:
-      client-aurity:
+      staging-aurity:
         application_root: /
         revision_location:
           revision_type: S3
