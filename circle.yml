@@ -15,7 +15,7 @@ deployment:
   staging:
     branch: master
     codedeploy:
-      staging-aurity:
+      staging-client:
         application_root: /
         revision_location:
           revision_type: S3
@@ -23,4 +23,4 @@ deployment:
             bucket: aurity-staging
             key_pattern: client/{SHORT_COMMIT}-{BUILD_NUM}
         region: us-west-2
-        deployment_group: staging
+        deployment_group: staging-client
