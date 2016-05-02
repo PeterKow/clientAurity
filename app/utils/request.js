@@ -1,3 +1,4 @@
+/* global API_URL */
 import 'whatwg-fetch'
 import qs from 'qs'
 
@@ -11,7 +12,7 @@ import qs from 'qs'
  */
 export default function request(url, { credentials = 'same-origin', method = 'get', query, ...other } = {}) {
   const queryString = qs.stringify(query)
-  const finalUrl = `http://localhost:8000/api${url}?${queryString}`
+  const finalUrl = `${API_URL}${url}?${queryString}`
 
   return fetch(finalUrl, {
     credentials,

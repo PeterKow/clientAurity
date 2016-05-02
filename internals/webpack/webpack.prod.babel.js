@@ -101,5 +101,13 @@ module.exports = require('./webpack.base.babel')({
         additional: ['*.chunk.js'],
       },
     }),
+    new webpack.DefinePlugin({
+      API_URL: getUrl(),
+    }),
   ],
 });
+
+function getUrl() {
+  const apiUrl = process.env.API_URL || 'http://localhost:8000/api'
+  return JSON.stringify(apiUrl)
+}
