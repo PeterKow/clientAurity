@@ -11,16 +11,12 @@ test:
   post:
     - npm run build
 
-general:
-  artifacts:
-    - "appspec.yml"
-
 deployment:
   staging:
     branch: master
     codedeploy:
       staging-aurity:
-        application_root: /build
+        application_root: /
         revision_location:
           revision_type: S3
           s3_location:
