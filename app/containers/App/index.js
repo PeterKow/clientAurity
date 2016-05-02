@@ -8,8 +8,7 @@
 
 import React from 'react';
 import styles from './styles.css';
-
-import Navbar from '../../components/navbar/navbar.js'
+import Navbar from '../../components/navbar2/navbar.js'
 
 export default function App({ children }) {
   return (
