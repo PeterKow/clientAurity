@@ -11,6 +11,10 @@ test:
   post:
     - npm run build
 
+general:
+  artifacts:
+    - "appspec.yml"
+
 deployment:
   staging:
     branch: master
