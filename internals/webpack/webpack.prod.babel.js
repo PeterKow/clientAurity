@@ -108,6 +108,6 @@ module.exports = require('./webpack.base.babel')({
 });
 
 function getUrl() {
-  const apiUrl = process.env.API_URL || 'http://localhost:8000/api'
+  const apiUrl = process.env.API_URL || 'http://52.37.116.238/api'
   return JSON.stringify(apiUrl)
 }
