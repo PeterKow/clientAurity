@@ -19,7 +19,7 @@ export default function thunkOnSteroidsMiddleware({ dispatch, getState }) {
 
           error => {
             const newPayload = {
-              error,
+              error: mapError(error),
               type: `${action.type}_FAILED`,
               startedPayload: action.payload,
             }
@@ -44,4 +44,16 @@ function isPromise(action) {
 
 function isFunction(action) {
   return typeof action === 'function'
+}
+
+function mapError(error) {
+  if (error instanceof Error) {
+    return {
+      message: error.message,
+      name: error.name,
+      stack: error.stack,
+    }
+  }
+
+  return error
 }

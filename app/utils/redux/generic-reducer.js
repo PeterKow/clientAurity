@@ -14,7 +14,7 @@ function createInitStore(initStore) {
     error: false,
     errorMessage: '',
     ...initStore,
-  })
+  }, createListIfPossible)
 }
 
 function genericReducer(state, action) {
@@ -78,11 +78,16 @@ function regexSTARTED() {
 }
 
 function getError(action) {
-  if (action.payload && action.payload.error && action.payload.error.message) {
-    return action.payload.error.message
-  } else if (action.payload && action.payload.error) {
-    return action.payload.error
+  if (action.error && action.error.message) {
+    return action.error.message
+  } else if (action.error) {
+    return action.error
   }
 
   return ''
+}
+
+function createListIfPossible(key, value) {
+  const isIndexed = Immutable.Iterable.isIndexed(value);
+  return isIndexed ? value.toList() : value.toOrderedMap();
 }

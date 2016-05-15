@@ -8,7 +8,7 @@ import globalReducer from 'App/reducer';
 import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
-import { visibilityFilter, snippetReducer } from 'businessLogic/snippets/snippets.reducers'
+import snippetReducer, { visibilityFilter } from 'businessLogic/snippets/snippets.reducers'
 import user from 'businessLogic/user/user.reducers.js'
 
 /*

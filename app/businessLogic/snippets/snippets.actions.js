@@ -2,7 +2,7 @@
  * action types
  */
 import fetch from 'request'
-
+import { searchByUsername } from 'businessLogic/api/aurity/db.api'
 
 import snippetsActionsTypes from './snippets.action-types'
 const { FETCH_SNIPPETS, FETCH_SNIPPETS_STANDARD, SET_VISIBILITY_TEXT_FILTER } = snippetsActionsTypes
@@ -33,34 +33,32 @@ export { setVisibilityTextFilter }
 
 function fetchSnippetsStandard(payload) {
   return ({ dispatch }) => {
-
-    // Example query
-    // const query = {
-    //   userName: 'dan_abramov',
-    //   favorite_count: 10,
-    //   retweet_count: 10,
-    //   page: 10,
-    //   limit: 10,
-    //   sort: { userName: 1, favorite_count: -1 },
-    // }
-    const query = {
-      limit: 50,
-      sort: { favorite_count: 1 },
-      ...payload.query,
-    }
-
     const action = {
       type: FETCH_SNIPPETS_STANDARD,
-      promise: fetch('/username', {
-        query,
-      })
-        .then(parseResponseFromDbTweet),
+      promise: searchByUsername(payload.query),
       payload,
     }
+
     return dispatch(action)
   }
 }
 
+//function fetchSnippetsStandardOLD(payload) {
+//  return ({ dispatch }) => {
+//    const action = {
+//      type: FETCH_SNIPPETS_STANDARD,
+//      promise: searchByUsername(payload.query),
+//      payload,
+//    }
+//    return dispatch(action)
+//  }
+//}
+
+/**
+ * NOT IN USE??!?!! MAYBE WORTH TO DELTE
+ * @param payload
+ * @returns {Function}
+ */
 function fetchDbTweetsSearch(payload) {
   return ({ dispatch }) => {
     const user = payload.user ? payload.user : 'dan_abramov'
@@ -119,13 +117,4 @@ export function fetchMiniArticlesFailed(data) {
 
 export function updateArticleSuccess(payload) {
   return { type: UPDATE_ARTICLE_SUCCESS, payload}
-}
-
-function parseResponseFromDbTweet(data) {
-  if (data.data) {
-    return data.data
-  }
-
-  throw { error: "No data" }
-
 }

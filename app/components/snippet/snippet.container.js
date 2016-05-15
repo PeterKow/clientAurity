@@ -17,7 +17,7 @@ function select(state) {
   return {
     snippetList: searchText(selectSnippetsList(state.getIn(['snippetReducer', 'snippetList']), state.get('visibilityFilter')), state.getIn(['snippetReducer', 'searchText'])),
     snippetIsFetching: state.getIn(['snippetReducer', 'isFetching']),
-    snippetFetchingError: state.getIn(['snippetReducer', 'fetchingError']),
+    snippetFetchingError: state.getIn(['snippetReducer', 'errorMessage']),
     visibilityFilter: state.get('visibilityFilter'),
     searchText: state.get('searchText'),
     likedUserList: state.getIn(['user', 'likedUserList']),
