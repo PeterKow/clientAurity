@@ -1,18 +1,29 @@
-import expect from 'expect';
+import expect from 'expect'
 import {
-  defaultAction,
-} from '../actions';
+  setTwitterSource,
+  setDbSource,
+} from '../actions'
 import {
-  DEFAULT_ACTION,
-} from '../constants';
+  SET_TWITTER_SOURCE,
+  SET_DB_SOURCE,
+} from '../constants'
 
 describe('MainPage actions', () => {
-  describe('Default Action', () => {
+  describe('setTwitterSource Action', () => {
     it('has a type of DEFAULT_ACTION', () => {
       const expected = {
-        type: DEFAULT_ACTION,
-      };
-      expect(defaultAction()).toEqual(expected);
-    });
-  });
-});
+        type: SET_TWITTER_SOURCE,
+      }
+      expect(setTwitterSource()).toEqual(expected);
+    })
+  })
+
+  describe('setDbSource Action', () => {
+    it('has a type of DEFAULT_ACTION', () => {
+      const expected = {
+        type: SET_DB_SOURCE,
+      }
+      expect(setDbSource()).toEqual(expected);
+    })
+  })
+})

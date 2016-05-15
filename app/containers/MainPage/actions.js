@@ -9,13 +9,16 @@ import {
   SET_DB_SOURCE,
 } from './constants';
 
-export function setTwitterSource() {
+export { setTwitterSource }
+export { setDbSource }
+
+function setTwitterSource() {
   return {
     type: SET_TWITTER_SOURCE,
   };
 }
 
-export function setDbSource() {
+function setDbSource() {
   return {
     type: SET_DB_SOURCE,
   };

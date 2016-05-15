@@ -3,6 +3,7 @@
  */
 
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -59,18 +60,24 @@ module.exports = {
   },
   resolve: {
     modulesDirectories: [
-      'businessLogic',
       'containers',
       'components',
       'selectors',
       'sagas',
       'assets',
+      'businessLogic',
       'node_modules',
       'utils',
+      'app',
     ],
     alias: {
       // required for enzyme to work properly
       sinon: 'sinon/pkg/sinon',
     },
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      API_URL: JSON.stringify('http://localhost:8000/api'),
+    }),
+  ]
 };

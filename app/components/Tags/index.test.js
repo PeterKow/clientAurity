@@ -1,4 +1,4 @@
-import Tags from './index';
+import Tags from './tags';
 
 import expect from 'expect';
 import { shallow } from 'enzyme';
