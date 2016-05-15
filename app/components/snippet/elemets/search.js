@@ -3,7 +3,15 @@ import Button from 'components/Button'
 import Input from 'components/Input'
 import styles from './styles.css'
 import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
+import mainSelector from 'selectors/mainSelector'
 import { fetchSnippetsStandard } from 'businessLogic/snippets/snippets.actions'
+
+function select(state) {
+  return {
+    dataSource: state.get('dataSource'),
+  };
+}
 
 class Search extends Component {
   constructor(props) {
@@ -28,9 +36,9 @@ class Search extends Component {
   }
 
   handleSearch = () => {
-    const { dispatch } = this.props
+    const { dispatch, dataSource } = this.props
     const { userName, retweetCount, favoriteCount } = this.state
-    dispatch(fetchSnippetsStandard({ query: { userName, retweetCount, favoriteCount } }))
+    dispatch(fetchSnippetsStandard({ query: { userName, retweetCount, favoriteCount, dataSource } }))
   }
 
   render() {
@@ -53,4 +61,7 @@ class Search extends Component {
   }
 }
 
-export default connect(() => { return {} })(Search)
+export default connect(createSelector(
+  mainSelector,
+  select
+))(Search)

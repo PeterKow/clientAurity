@@ -4,4 +4,5 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/MainPage/DEFAULT_ACTION';
+export const SET_DB_SOURCE = 'app/MainPage/SET_DB_SOURCE';
+export const SET_TWITTER_SOURCE = 'app/MainPage/SET_TWITTER_SOURCE';

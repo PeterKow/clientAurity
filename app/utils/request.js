@@ -14,7 +14,6 @@ export default function request(url, { credentials = 'same-origin', method = 'ge
   const queryString = qs.stringify(query)
   const finalUrl = `${API_URL}${url}?${queryString}`
 
-  console.log('sending to ', finalUrl)
   return fetch(finalUrl, {
     credentials,
     method,

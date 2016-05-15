@@ -6,15 +6,20 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  SET_TWITTER_SOURCE,
+  SET_DB_SOURCE,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  dataSource: 'DB data',
+});
 
 function mainPageReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case SET_DB_SOURCE:
+      return state.set('dataSource', 'DB data');
+    case SET_TWITTER_SOURCE:
+      return state.set('dataSource', 'Twitter');
     default:
       return state;
   }
