@@ -5,7 +5,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
-import universalMiddleware from 'universalMiddleware'
+import universalMiddleware from 'utils/redux/thunk-on-steroids.middleware'
 import sagaMiddleware from 'redux-saga';
 import sagas from './sagas';
 import createReducer from './reducers';
