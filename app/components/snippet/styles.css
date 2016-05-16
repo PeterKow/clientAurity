@@ -1,9 +1,9 @@
 .noData {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    margin: 40px 0;
-    font-weight: bold;
-    font-size: 30px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 40px 0;
+  font-weight: bold;
+  font-size: 30px;
 }

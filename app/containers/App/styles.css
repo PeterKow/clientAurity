@@ -2,19 +2,19 @@
 
 html,
 body {
-    height: 100%;
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 22px;
+  height: 100%;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 22px;
 }
 
 body {
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 body.fontLoaded {
-  font-family: 'Open Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 :global(#app) {
@@ -23,46 +23,46 @@ body.fontLoaded {
   width: 100%;
 }
 
-
 .containerMain {
-    width: 750px;
-    overflow: hidden;
+  width: 750px;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 768px) {
-    .containerMain {
-        width: 750px;
-        overflow: hidden;
-    }
-    body {
-        font-size: 22px;
-    }
+  .containerMain {
+    width: 750px;
+    overflow: hidden;
+  }
+  body {
+    font-size: 22px;
+  }
 
 }
 
 @media screen and (min-width: 980px) {
-    .containerMain {
-        width: 960px;
-    }
-    body {
-        font-size: 22px;
-    }
+  .containerMain {
+    width: 960px;
+  }
+  body {
+    font-size: 22px;
+  }
 }
 
 @media screen and (min-width: 1200px) {
-    .containerMain {
-        width: 1170px;
-    }
+  .containerMain {
+    width: 1170px;
+  }
 }
 
 @media screen and (min-width: 1600px) {
-    .containerMain {
-        width: 1480px;
-    }
+  .containerMain {
+    width: 1480px;
+  }
 }
+
 .containerMain {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }

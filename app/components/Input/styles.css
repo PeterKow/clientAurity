@@ -1,12 +1,12 @@
 .input {
-    border-width: 1px;
-    border-style: solid;
-    border-color: #41ADDD;
-    border-radius: 50px;
-    align-self: center;
-    padding: 3px 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #41ADDD;
+  border-radius: 50px;
+  align-self: center;
+  padding: 3px 10px;
 }
 
 .input:focus {
-    outline: none;
+  outline: none;
 }
