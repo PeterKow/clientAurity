@@ -30,6 +30,7 @@ function parseResponseFromDbTweet(data) {
   if (data.data && data.data.data && data.data.data.length !== 0) {
     return data.data
   }
+
   console.log('throw')
 
   throw new Error('No data')

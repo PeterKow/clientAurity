@@ -26,7 +26,6 @@ describe('Generic reducer module', () => {
     })
   })
 
-
   describe('genericReducer', () => {
     it('should throw exception when no state passed', () => {
       const error = 'state for genericReducer is undefined, please pass defaultState in' +
@@ -146,7 +145,6 @@ describe('Generic reducer module', () => {
     })
   })
 })
-
 
 function getDirtyState() {
   return Immutable.fromJS({

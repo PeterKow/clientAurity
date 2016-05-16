@@ -1,3 +1,4 @@
+// jscs:disable
 /*eslint-disable */
 import Firebase from 'firebase'
 var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/tweets');
