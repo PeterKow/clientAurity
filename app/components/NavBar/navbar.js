@@ -1,15 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router'
-//import store from 'utils/store.js'
-//import { logout } from 'business/user/user.group.actions.js'
-//import { syncTweets } from 'business/firebase/firebase'
-//import { startFetchMiniArticles } from 'containers/articles/articleGroup.actions.js'
+
+// import store from 'utils/store.js'
+// import { logout } from 'business/user/user.group.actions.js'
+// import { syncTweets } from 'business/firebase/firebase'
+// import { startFetchMiniArticles } from 'containers/articles/articleGroup.actions.js'
 
 export default function Navbar() {
-    return (<nav className="navbar navbar-default">
+  return (
+    <nav className="navbar navbar-default">
       <div className="container-fluid">
         <div className="navbar-header">
-          <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <button
+            type="button" className="navbar-toggle collapsed" data-toggle="collapse"
+            data-target="#navbar" aria-expanded="false" aria-controls="navbar"
+          >
             <span className="sr-only">Toggle navigation</span>
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
@@ -20,20 +25,14 @@ export default function Navbar() {
         <div id="navbar" className="navbar-collapse collapse">
           <ul className="nav navbar-nav">
             <li className="active"><a href="/">Home</a></li>
-            {
-              //<li style={{cursor: 'pointer' }}
-               // onClick={() => store.dispatch(startFetchMiniArticles())}><a>New search</a>
-            //</li>
-            }
             <li><Link to="/login">Login</Link></li>
-            {
-              //<li style={{cursor: 'pointer' }}
-              //    onClick={() => store.dispatch(logout())}><a>Logout</a>
-              //</li>
-            }
             <li><a href="/auth/twitter">Login direct</a></li>
             <li className="dropdown">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
+              <a
+                href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
+                aria-haspopup="true" aria-expanded="false"
+              >Dropdown<span className="caret"></span>
+              </a>
               <ul className="dropdown-menu">
                 <li><a href="#">Action</a></li>
                 <li><a href="#">Another action</a></li>
@@ -46,10 +45,12 @@ export default function Navbar() {
             </li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-            <li className="active"><a href="./">Default <span className="sr-only">(current)</span></a></li>
+            <li className="active">
+              <a href="./">Default<span className="sr-only">(current)</span></a></li>
             <li><a href="../navbar-fixed-top/">Fixed top</a></li>
           </ul>
         </div>
       </div>
-    </nav>)
+    </nav>
+  )
 }

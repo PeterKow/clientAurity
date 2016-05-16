@@ -2,9 +2,9 @@ import store from '../store'
 import storage from './storage'
 
 const auth = {
-  getTwitterTokens: getTwitterTokens,
-  setTwitterTokens: setTwitterTokens,
-  removeTwitterTokens: removeTwitterTokens,
+  getTwitterTokens,
+  setTwitterTokens,
+  removeTwitterTokens,
 }
 
 export default auth

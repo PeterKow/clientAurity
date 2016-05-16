@@ -9,6 +9,6 @@ const imgStyle = {
 
 export default function Avatar({ src }) {
   return (
-    <img style={imgStyle} src={ src }/>
+    <img style={imgStyle} src={ src } />
   )
 }

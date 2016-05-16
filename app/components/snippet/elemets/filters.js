@@ -5,7 +5,6 @@ import React, { Component, PropTypes } from 'react';
 
 export default class Filter extends Component {
   renderFilter(filter, name) {
-
     return (
       <a
         href="#"
@@ -22,7 +21,7 @@ export default class Filter extends Component {
 
   render() {
     return (
-      <div style={{ padding: 5}}>
+      <div style={{ padding: 5 }}>
         Show:
         {' '}
         {this.renderFilter('SHOW_ALL', 'All')}

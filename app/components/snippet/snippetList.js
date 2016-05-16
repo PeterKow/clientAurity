@@ -34,23 +34,31 @@ SnippetList.propTypes = {
 
 // TODO refactor to actions
 function setThumbUp(snippet) {
-  snippet.thumbDown = false
-  snippet.thumbUp = true
-  return snippet
+  return {
+    ...snippet,
+    thumbDown: false,
+    thumbUp: true,
+  }
 }
 
 function setThumbDown(snippet) {
-  snippet.thumbDown = true
-  snippet.thumbUp = false
-  return snippet
+  return {
+    ...snippet,
+    thumbDown: true,
+    thumbUp: false,
+  }
 }
 
 function setStar(snippet) {
-  snippet.stared = !snippet.stared
-  return snippet
+  return {
+    ...snippet,
+    stared: !snippet.stared,
+  }
 }
 
 function setTags(tags, snippet) {
-  snippet.tags = tags
-  return snippet
+  return {
+    ...snippet,
+    tags,
+  }
 }

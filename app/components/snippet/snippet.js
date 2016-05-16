@@ -8,7 +8,7 @@ import Tags from 'components/Tags/tags'
 
 export default class Snippet extends Component {
   onTagChange = (e) => {
-    this.setState({ tags: e.target.value})
+    this.setState({ tags: e.target.value })
   }
 
   render() {
@@ -21,7 +21,7 @@ export default class Snippet extends Component {
     }
 
     const { quotedStatus, created_at, onThumbDown, onThumbUp, onStared, tags } = this.props
-    const { id_str, user, onClick, thumbDown, thumbUp, stared, saveTags, profileImage } = this.props
+    const { idStr, user, onClick, thumbDown, thumbUp, stared, profileImage } = this.props
     const { favoriteCount, image, text } = this.props
 
     return (
@@ -31,16 +31,22 @@ export default class Snippet extends Component {
             <Avatar src={ profileImage } />
             <div id="manage">
               { user.screenName }
-              <a target="_blank" href={`https://twitter.com/${user.screenName}/status/${id_str}`}>Twitter</a>
-              <span style={{ borderRadius: 5, padding: 4, paddingLeft: 10, paddingRight: 10, backgroundColor: 'greenyellow', margin: '0 10px' }}
-                    onClick={ onClick }
+              <a target="_blank" href={`https://twitter.com/${user.screenName}/status/${idStr}`}>
+                Twitter
+              </a>
+              <span
+                style={{ borderRadius: 5, padding: 4, paddingLeft: 10, paddingRight: 10,
+                backgroundColor: 'greenyellow', margin: '0 10px' }}
+                onClick={ onClick }
               >
                 DONE
               </span>
               <span style={ getStyle(thumbDown) } onClick={ onThumbDown }>{ showThumbDown() }</span>
               <span style={ getStyle(thumbUp) } onClick={ onThumbUp }>{ showThumbUp() }</span>
               <span style={ getStyle(stared) } onClick={ onStared }>{ showStar() }</span>
-              <span style={{ marginLeft: 10 }}>{ moment(created_at).format('MMMM DD YYYY, h:mm a') }</span>
+              <span style={{ marginLeft: 10 }}>{
+                moment(created_at).format('MMMM DD YYYY, h:mm a')
+              }</span>
             </div>
             <Tags tags={ tags } />
 
@@ -97,5 +103,5 @@ function showThumbUp(thumbUp) {
 }
 
 function showThumbDown(thumbDown) {
-  return thumbDown ? '👎' : "👎";
+  return thumbDown ? '👎' : '?';
 }

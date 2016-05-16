@@ -1,16 +1,16 @@
 let storageObject = {}
 const storage = {
-  set: set,
-  get: get,
-  remove: remove,
-  clearAll: clearAll,
+  set,
+  get,
+  remove,
+  clearAll,
 }
 
 const db = {
-  setItem: setItem,
-  getItem: getItem,
-  removeItem: removeItem,
-  clear: clear,
+  setItem,
+  getItem,
+  removeItem,
+  clear,
 }
 let dbStore = {}
 
@@ -54,6 +54,7 @@ function testBrowser(testStorage) {
   } catch (err) {
     return false
   }
+
   return true
 }
 

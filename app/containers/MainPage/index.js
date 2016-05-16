@@ -15,32 +15,28 @@ import mainSelector from 'mainSelector';
 import Button from 'Button';
 import SnippetContainer from 'components/snippet/snippet.container'
 import styles from './styles.css';
-
 import DataSource from 'components/data-source/data-source'
 
-class MainPage extends React.Component {
-  render() {
-    const { dispatch } = this.props
-    return (
-      <div className={ styles.mainPage }>
-        <DataSource />
-        <SnippetContainer />
-        <Button onClick={ () => dispatch(push('/home')) } >Go to home</Button>
-        <Button onClick={ () => dispatch(fetchTest()) } >Fetch test</Button>
-      </div>
-    );
-  }
+function MainPage({ dispatch }) {
+  return (
+    <div className={ styles.mainPage }>
+      <DataSource />
+      <SnippetContainer />
+      <Button onClick={ () => dispatch(push('/home')) } >Go to home</Button>
+      <Button onClick={ () => dispatch(fetchTest()) } >Fetch test</Button>
+    </div>
+  )
 }
 
 const mapStateToProps = createSelector(
   mainSelector,
   (main) => ({ main })
-);
+)
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-  };
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

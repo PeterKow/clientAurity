@@ -1,17 +1,20 @@
-import { fetchMiniArticles, fetchMiniArticlesSuccess, fetchMiniArticlesFailed } from './snippets.actions.js'
+import { fetchMiniArticles, fetchMiniArticlesSuccess, fetchMiniArticlesFailed }
+  from './snippets.actions.js'
 import { unauthorised } from 'businessLogic/user/user.group.actions'
 import fetch from 'request'
 import auth from 'utils/auth'
 
 export function startFetchMiniArticles(payload = {}) {
-
   return dispatch => {
     dispatch(fetchMiniArticles(payload))
-    //const from:dan_abramov
-    const user = payload.search ? payload.search : 'dan_abramov'
-    const minRetweets = payload.min_retweets
-    const minFaves =  payload.min_faves
-    const query = "from:" + user + " min_retweets:" + minRetweets + " OR min_faves:" + minFaves
+
+    // const from:dan_abramov
+    // const user = payload.search ? payload.search : 'dan_abramov'
+    // const minRetweets = payload.min_retweets
+    // const minFaves = payload.min_faves
+    const query = 'check this please here!!'
+
+    // const query = "from:" + user + " min_retweets:" + minRetweets + " OR min_faves:" + minFaves
     console.log('query', query)
     return sendRequest(dispatch, query)
   }
@@ -21,16 +24,18 @@ export function startFetchMiniArticlesReply() {
   return dispatch => {
     dispatch(fetchMiniArticles())
 
-    //const from:dan_abramov
-    const minRetweets = 10
-    const minFaves = 10
-    const query = "from:dan_abramov min_retweets:" + minRetweets + " OR min_faves:" + minFaves
+    // const from:dan_abramov
+    // const minRetweets = 10
+    // const minFaves = 10
+    // const query = "from:dan_abramov min_retweets:" + minRetweets + " OR min_faves:" + minFaves
+
+    const query = 'check this please here!!'
     return sendRequest(dispatch, query)
   }
 }
 
 function mapTwitterResponse(data) {
-  //console.log('data', data.entities)
+  // console.log('data', data.entities)
   return {
     id: data.id,
     id_str: data.id_str,
@@ -40,7 +45,7 @@ function mapTwitterResponse(data) {
     favoriteCount: data.favorite_count,
     retweeted: data.retweeted,
     retweetCount: data.retweet_count,
-    image: getMedia( data.entities.media),
+    image: getMedia(data.entities.media),
     entities: data.entities,
     quotedStatus: data.quoted_status,
     quoted_status_id: data.quoted_status_id,
@@ -83,10 +88,10 @@ function sendRequest(dispatch, query) {
     return dispatch(unauthorised('notTokensOnTheClient'))
   }
 
-  return fetchService('/search/twitter', {
+  return fetch('/search/twitter', {
     method: 'post',
     headers: {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ ...twitterTokens, query }),
@@ -94,7 +99,7 @@ function sendRequest(dispatch, query) {
     .then(res => {
       const data = res.message.statuses.map(mapTwitterResponse)
 
-      //console.log('daaaa', data[0].user.id)
+      // console.log('daaaa', data[0].user.id)
       dispatch(fetchMiniArticlesSuccess(data))
     })
     .catch(res => {

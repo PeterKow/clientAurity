@@ -4,18 +4,14 @@ import Filter from './elemets/filters'
 import Search from './elemets/search'
 import SearchText from './elemets/searchText'
 import SnippetList from 'components/snippet/snippetList'
-import { fetchSnippetsStandard, setVisibilityFilter, VisibilityFilters, setVisibilityTextFilter } from 'businessLogic/snippets/snippets.actions'
-import { initSync, readUsers } from 'businessLogic/firebase/firebase'
+import { fetchSnippetsStandard, setVisibilityFilter, VisibilityFilters, setVisibilityTextFilter }
+  from 'businessLogic/snippets/snippets.actions'
 import styles from './styles.css'
-
-import Firebase from 'firebase'
-var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/70345946');
-window._source = 'firebase'
-
 
 function select(state) {
   return {
-    snippetList: searchText(selectSnippetsList(state.getIn(['snippetReducer', 'snippetList']), state.get('visibilityFilter')), state.getIn(['snippetReducer', 'searchText'])),
+    snippetList: searchText(selectSnippetsList(state.getIn(['snippetReducer', 'snippetList']),
+      state.get('visibilityFilter')), state.getIn(['snippetReducer', 'searchText'])),
     snippetIsFetching: state.getIn(['snippetReducer', 'isFetching']),
     snippetFetchingError: state.getIn(['snippetReducer', 'errorMessage']),
     visibilityFilter: state.get('visibilityFilter'),
@@ -28,37 +24,23 @@ export default class SnippetContainer extends Component {
 
   componentWillMount() {
     const { dispatch } = this.props
-
-    //initSync()
-    //readUsers(dispatch)
     const query = {
       userName: 'dan_abramov',
       favoriteCount: 10,
       retweetCount: 10,
     }
     dispatch(fetchSnippetsStandard({ source: 'componentWillMount - SnippetContainer', query }))
-
-    //myDataRef.orderByKey().on("value", function(snapshot) {
-    //  const newData = []
-    //  const data =  snapshot.val()
-    //  for( var tweet in data ) {
-    //    newData.unshift(data[tweet])
-    //  }
-    //  //console.log('------------', newData);
-    //  dispatch({ type: 'FETCH_MINI_ARTICLES_SUCCESS', data: newData })
-    //}, function (errorObject) {
-    //  console.log("The read failed: " + errorObject.code);
-    //});
   }
 
-  onSearchText = (searchText) => {
+  onSearchText = (newSearchText) => {
     this.setState({
-      searchText,
+      searchText: newSearchText,
     })
   }
 
   render() {
-    const { dispatch, snippetList, visibilityFilter, likedUserList, snippetIsFetching, snippetFetchingError } = this.props
+    const { dispatch, snippetList, visibilityFilter, snippetIsFetching,
+      snippetFetchingError } = this.props
     return (
       <div>
         <Filter
@@ -85,8 +67,6 @@ export default class SnippetContainer extends Component {
   }
 }
 
-//<Articles isFetching={isFetching} snippetList={data} likedUserList={ likedUserList }/>
-
 SnippetContainer.propTypes = {
   dispatch: React.PropTypes.func,
   snippetList: React.PropTypes.object,
@@ -110,10 +90,8 @@ function selectSnippetsList(snippetList, filter) {
   }
 }
 
-function searchText(snippetList, searchText) {
-  return snippetList.filter(snippet => {
-    return snippet.text.match(new RegExp(searchText, 'i'))
-  })
+function searchText(snippetList, searchTextValue) {
+  return snippetList.filter(snippet => snippet.text.match(new RegExp(searchTextValue, 'i')))
 }
 
 export default connect(select)(SnippetContainer)
