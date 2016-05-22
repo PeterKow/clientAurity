@@ -188,6 +188,7 @@
     "excludeFiles": [
       "build/**",
       "coverage/**",
+      "internals/testing/coverage/**",
       "docs/**",
       "node_modules/**"
     ],

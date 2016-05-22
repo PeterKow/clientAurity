@@ -1,15 +1,12 @@
-import KeyMirror from 'keymirror'
+import generateActionTypes from 'utils/redux/action-types-creator'
 
-const snippetsActionsTypes = new KeyMirror({
-  FETCH_SNIPPETS: null,
-  FETCH_SNIPPETS_STARTED: null,
-  FETCH_SNIPPETS_SUCCESS: null,
-  FETCH_SNIPPETS_FAILED: null,
-  FETCH_SNIPPETS_STANDARD: null,
-  FETCH_SNIPPETS_STANDARD_STARTED: null,
-  FETCH_SNIPPETS_STANDARD_SUCCESS: null,
-  FETCH_SNIPPETS_STANDARD_FAILED: null,
-  SET_VISIBILITY_TEXT_FILTER: null,
+const snippetsActionsTypes = generateActionTypes({
+  sync: ['SET_VISIBILITY_TEXT_FILTER'],
+  async: [
+    'FETCH_SNIPPETS',
+    'FETCH_SNIPPETS_STANDARD',
+    'COMPLETE_SNIPPET',
+  ],
 })
 
 Object.freeze(snippetsActionsTypes)

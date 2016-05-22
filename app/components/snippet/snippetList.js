@@ -15,7 +15,7 @@ export default function SnippetList({ dispatch, snippetList, isFetching }) {
       {snippetList.map((miniArticle, index) =>
         <Snippet {...miniArticle}
           key={index}
-          onClick={() => dispatch(completeSnippet(miniArticle.id_str))}
+          onClick={() => dispatch(completeSnippet(miniArticle.idStr))}
           onThumbDown={() => syncTweet(setThumbDown(miniArticle))}
           onThumbUp={() => syncTweet(setThumbUp(miniArticle))}
           onStared={() => syncTweet(setStar(miniArticle))}

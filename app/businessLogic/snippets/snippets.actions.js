@@ -1,16 +1,11 @@
 /*
  * action types
  */
-import { searchByUsername } from 'businessLogic/api/aurity/db.api'
+import { searchByUsername, updateSnippet } from 'businessLogic/api/aurity/db.api'
 import snippetsActionsTypes from './snippets.action-types'
-const { FETCH_SNIPPETS_STANDARD, SET_VISIBILITY_TEXT_FILTER } = snippetsActionsTypes
+const { FETCH_SNIPPETS_STANDARD, SET_VISIBILITY_TEXT_FILTER, COMPLETE_SNIPPET } = snippetsActionsTypes
 
-export const COMPLETE_MINI_ARTICLE = 'COMPLETE_MINI_ARTICLE'
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
-export const FETCH_MINI_ARTICLES = 'FETCH_MINI_ARTICLES'
-export const FETCH_MINI_ARTICLES_FAILED = 'FETCH_MINI_ARTICLES_FAILED'
-export const FETCH_MINI_ARTICLES_SUCCESS = 'FETCH_MINI_ARTICLES_SUCCESS'
-export const UPDATE_ARTICLE_SUCCESS = 'UPDATE_ARTICLE_SUCCESS'
 
 /*
  * other constants
@@ -27,12 +22,25 @@ export const VisibilityFilters = {
 
 export { fetchSnippetsStandard }
 export { setVisibilityTextFilter }
+export { completeSnippet }
 
 function fetchSnippetsStandard(payload) {
   return ({ dispatch }) => {
     const action = {
       type: FETCH_SNIPPETS_STANDARD,
       promise: searchByUsername(payload.query),
+      payload,
+    }
+
+    return dispatch(action)
+  }
+}
+
+function completeSnippet(payload) {
+  return ({ dispatch }) => {
+    const action = {
+      type: COMPLETE_SNIPPET,
+      promise: updateSnippet(payload.query),
       payload,
     }
 
@@ -76,31 +84,10 @@ function fetchDbTweetsSearch(payload) {
 }
 */
 
-export function completeSnippet(id) {
-  return { type: COMPLETE_MINI_ARTICLE, id };
-}
-
 export function setVisibilityFilter(filter) {
   return { type: SET_VISIBILITY_FILTER, filter };
 }
 
 export function setVisibilityTextFilter(filter) {
   return { type: SET_VISIBILITY_TEXT_FILTER, filter };
-}
-
-export function fetchMiniArticles(payload) {
-  window._source = 'twitter'
-  return { type: FETCH_MINI_ARTICLES, payload }
-}
-
-export function fetchMiniArticlesSuccess(data) {
-  return { type: FETCH_MINI_ARTICLES_SUCCESS, data }
-}
-
-export function fetchMiniArticlesFailed(data) {
-  return { type: FETCH_MINI_ARTICLES_FAILED, data }
-}
-
-export function updateArticleSuccess(payload) {
-  return { type: UPDATE_ARTICLE_SUCCESS, payload }
 }

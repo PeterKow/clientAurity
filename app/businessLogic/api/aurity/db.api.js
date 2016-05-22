@@ -1,6 +1,7 @@
-import fetch from 'request'
+import fetch from 'utils/request'
 
 export { searchByUsername }
+export { updateSnippet }
 
 /**
  *  Example query
@@ -34,4 +35,16 @@ function parseResponseFromDbTweet(data) {
   console.log('throw')
 
   throw new Error('No data')
+}
+
+function updateSnippet(queryParams) {
+  const query = {
+    completed: queryParams.completed,
+  }
+  const id = '709065699268927488'
+
+  return fetch(`/snippet/${id}`, {
+    method: 'POST',
+    query,
+  })
 }
