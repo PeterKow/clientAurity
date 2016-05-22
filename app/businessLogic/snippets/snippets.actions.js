@@ -38,10 +38,12 @@ function fetchSnippetsStandard(payload) {
 
 function completeSnippet(payload) {
   return ({ dispatch }) => {
+    const { idStr, completed } = payload
+    const newPayload = { idStr, completed: !completed }
     const action = {
       type: COMPLETE_SNIPPET,
-      promise: updateSnippet(payload.query),
-      payload,
+      promise: updateSnippet(newPayload),
+      payload: newPayload,
     }
 
     return dispatch(action)

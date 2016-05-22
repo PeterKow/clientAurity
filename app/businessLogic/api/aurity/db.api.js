@@ -37,11 +37,11 @@ function parseResponseFromDbTweet(data) {
   throw new Error('No data')
 }
 
-function updateSnippet(queryParams) {
+function updateSnippet({ idStr, completed }) {
   const query = {
-    completed: queryParams.completed,
+    completed,
   }
-  const id = '709065699268927488'
+  const id = idStr
 
   return fetch(`/snippet/${id}`, {
     method: 'POST',

@@ -28,6 +28,10 @@ function genericReducer(state, action) {
       ' reducer')
   }
 
+  if (action.type === 'COMPLETE_SNIPPET_STARTED') {
+    return state
+  }
+
   if (!!regexSTARTED().exec(action.type)) {
     return state
       .merge({

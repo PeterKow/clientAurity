@@ -1,13 +1,12 @@
 import { List } from 'immutable'
 import { genericReducer, createInitStore } from 'utils/redux/generic-reducer'
-import { SET_VISIBILITY_FILTER, VisibilityFilters,
-  UPDATE_ARTICLE_SUCCESS } from './snippets.actions.js'
+import { SET_VISIBILITY_FILTER, VisibilityFilters } from './snippets.actions.js'
 import { mapSnippet } from './snippet.model'
 const { SHOW_ACTIVE } = VisibilityFilters
 
 import snippetsActionsTypes from './snippets.action-types'
 const { FETCH_SNIPPETS_SUCCESS, SET_VISIBILITY_TEXT_FILTER } = snippetsActionsTypes
-const { FETCH_SNIPPETS_STANDARD_SUCCESS } = snippetsActionsTypes
+const { FETCH_SNIPPETS_STANDARD_SUCCESS, COMPLETE_SNIPPET_SUCCESS } = snippetsActionsTypes
 
 export { createInitialState }
 export { snippetReducer }
@@ -51,31 +50,17 @@ export function snippetReducer(state = initialState, action = { type: undefined 
 
     case SET_VISIBILITY_TEXT_FILTER:
       return state.set('searchText', action.filter)
+    case COMPLETE_SNIPPET_SUCCESS:
+      {
+        const { idStr, completed } = action.startedPayload
+        return state
+          .setIn([
+            'snippetList',
+            state.get('snippetList').findIndex(snippet => snippet.get('idStr') === idStr.toString()),
+            'completed',
+          ], completed)
+      }
 
-    // case COMPLETE_SNIPPET_SUCCESS:
-    //  const newState = state
-    //    .get('snippetsList')
-    //    .map(snippet =>
-    //      snippet.id_str === action.id ?
-    //      { ...snippet, completed: !snippet.completed } :
-    //        snippet
-    //    )
-    // console.log('sni', newState)
-    // return state.set('snippetList',newState)
-    // case COMPLETE_MINI_ARTICLE:
-    //  const newState = state.get('snippetsList').toFIXmeDudeImmutable().map(snippet =>
-    //    snippet.id_str === action.id ?
-    //    { ...snippet, completed: !snippet.completed } :
-    //      snippet
-    //  )
-    //  console.log('NO SYNC TO firebase!!')
-    //  //syncWithFirebase(newState, action.id)
-    //  return newState
-    case UPDATE_ARTICLE_SUCCESS:
-      return state.get('snippetsList').toFIXmeDudeImmutable_UPDATE_ARTICLE_SUCCESS()
-        .map(snippet =>
-          (snippet.id_str === action.payload.id_str ? action.payload : snippet)
-      )
     default:
       return state;
   }

@@ -1,11 +1,12 @@
+import { fromJS } from 'immutable'
 export { mapSnippet }
 
 function mapSnippet(data = {}) {
-  return {
+  return fromJS({
     id: data.id,
     idStr: data.id_str,
     text: expandUrls(data.text, data.entities.urls),
-    completed: false,
+    completed: data.completed || false,
     profileImage: data.user.profile_image_url_https,
     favoriteCount: data.favorite_count,
     retweeted: data.retweeted,
@@ -32,7 +33,7 @@ function mapSnippet(data = {}) {
     possibly_sensitive: data.possibly_sensitive,
     truncated: data.truncated,
     source: data.source,
-  }
+  })
 }
 
 function getMedia(media = []) {

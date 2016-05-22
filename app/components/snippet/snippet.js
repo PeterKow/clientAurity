@@ -22,10 +22,10 @@ export default class Snippet extends Component {
 
     const { quotedStatus, created_at, onThumbDown, onThumbUp, onStared, tags } = this.props
     const { idStr, user, onClick, thumbDown, thumbUp, stared, profileImage } = this.props
-    const { favoriteCount, image, text } = this.props
+    const { favoriteCount, image, text, completed } = this.props
 
     return (
-      <li style={styles(this.props.completed)} >
+      <li style={styles(completed)} >
         <div style={{ padding: '9px 12px' }} >
           <div style={{ marginLeft: 58 }}>
             <Avatar src={ profileImage } />

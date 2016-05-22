@@ -82,16 +82,16 @@ function selectSnippetsList(snippetList, filter) {
     case VisibilityFilters.SHOW_ALL:
       return snippetList
     case VisibilityFilters.SHOW_COMPLETED:
-      return snippetList.filter(snippet => snippet.completed);
+      return snippetList.filter(snippet => snippet.get('completed'));
     case VisibilityFilters.SHOW_ACTIVE:
-      return snippetList.filter(snippet => !snippet.completed);
+      return snippetList.filter(snippet => !snippet.get('completed'));
     default:
       return snippetList
   }
 }
 
 function searchText(snippetList, searchTextValue) {
-  return snippetList.filter(snippet => snippet.text.match(new RegExp(searchTextValue, 'i')))
+  return snippetList.filter(snippet => snippet.get('text').match(new RegExp(searchTextValue, 'i')))
 }
 
 export default connect(select)(SnippetContainer)

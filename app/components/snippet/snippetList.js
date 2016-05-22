@@ -12,15 +12,19 @@ export default function SnippetList({ dispatch, snippetList, isFetching }) {
     isFetching ?
     <LoadingIndicator /> :
     <ul style={{ WebkitPaddingStart: '0em' }}>
-      {snippetList.map((miniArticle, index) =>
-        <Snippet {...miniArticle}
-          key={index}
-          onClick={() => dispatch(completeSnippet(miniArticle.idStr))}
-          onThumbDown={() => syncTweet(setThumbDown(miniArticle))}
-          onThumbUp={() => syncTweet(setThumbUp(miniArticle))}
-          onStared={() => syncTweet(setStar(miniArticle))}
-          saveTags={(tags) => syncTweet(setTags(tags, miniArticle))}
-        />
+      {snippetList.map((snippet, index) => {
+        const snippetJS = snippet.toJS()
+        return (
+          <Snippet {...snippetJS}
+            key={index}
+            onClick={() => dispatch(completeSnippet(snippetJS))}
+            onThumbDown={() => syncTweet(setThumbDown(snippetJS))}
+            onThumbUp={() => syncTweet(setThumbUp(snippetJS))}
+            onStared={() => syncTweet(setStar(snippetJS))}
+            saveTags={(tags) => syncTweet(setTags(tags, snippetJS))}
+          />
+        )
+      }
       )}
     </ul>
   );
