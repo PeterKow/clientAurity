@@ -103,5 +103,5 @@ function showThumbUp(thumbUp) {
 }
 
 function showThumbDown(thumbDown) {
-  return thumbDown ? '👎' : '?';
+  return thumbDown ? '👎' : '👎';
 }

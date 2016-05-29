@@ -6,6 +6,7 @@ const snippetsActionsTypes = generateActionTypes({
     'FETCH_SNIPPETS',
     'FETCH_SNIPPETS_STANDARD',
     'COMPLETE_SNIPPET',
+    'UPDATE_SNIPPET',
   ],
 })
 

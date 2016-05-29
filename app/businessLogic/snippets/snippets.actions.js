@@ -3,7 +3,8 @@
  */
 import { searchByUsername, updateSnippet } from 'businessLogic/api/aurity/db.api'
 import snippetsActionsTypes from './snippets.action-types'
-const { FETCH_SNIPPETS_STANDARD, SET_VISIBILITY_TEXT_FILTER, COMPLETE_SNIPPET } = snippetsActionsTypes
+const { FETCH_SNIPPETS_STANDARD, SET_VISIBILITY_TEXT_FILTER } = snippetsActionsTypes
+const { COMPLETE_SNIPPET, UPDATE_SNIPPET } = snippetsActionsTypes
 
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 
@@ -23,6 +24,10 @@ export const VisibilityFilters = {
 export { fetchSnippetsStandard }
 export { setVisibilityTextFilter }
 export { completeSnippet }
+export { thumbUp }
+export { thumbDown }
+export { updateStar }
+export { updateTags }
 
 function fetchSnippetsStandard(payload) {
   return ({ dispatch }) => {
@@ -38,8 +43,8 @@ function fetchSnippetsStandard(payload) {
 
 function completeSnippet(payload) {
   return ({ dispatch }) => {
-    const { idStr, completed } = payload
-    const newPayload = { idStr, completed: !completed }
+    const { idStr } = payload
+    const newPayload = { idStr, updateFields: markAsCompleted(payload) }
     const action = {
       type: COMPLETE_SNIPPET,
       promise: updateSnippet(newPayload),
@@ -47,6 +52,108 @@ function completeSnippet(payload) {
     }
 
     return dispatch(action)
+  }
+}
+
+function thumbUp(payload) {
+  return ({ dispatch }) => {
+    const { idStr } = payload
+    const newPayload = { idStr, updateFields: setThumbUp(payload) }
+    const action = {
+      type: UPDATE_SNIPPET,
+      promise: updateSnippet(newPayload),
+      payload: newPayload,
+    }
+
+    return dispatch(action)
+  }
+}
+
+function thumbDown(payload) {
+  return ({ dispatch }) => {
+    const { idStr } = payload
+    const newPayload = { idStr, updateFields: setThumbDown(payload) }
+    const action = {
+      type: UPDATE_SNIPPET,
+      promise: updateSnippet(newPayload),
+      payload: newPayload,
+    }
+
+    return dispatch(action)
+  }
+}
+
+function updateStar(payload) {
+  return ({ dispatch }) => {
+    const { idStr } = payload
+    const newPayload = { idStr, updateFields: setStar(payload) }
+    const action = {
+      type: UPDATE_SNIPPET,
+      promise: updateSnippet(newPayload),
+      payload: newPayload,
+    }
+
+    return dispatch(action)
+  }
+}
+
+function updateTags(payload) {
+  return ({ dispatch }) => {
+    const { idStr } = payload
+    const newPayload = { idStr, updateFields: setStar(payload) }
+    const action = {
+      type: UPDATE_SNIPPET,
+      promise: updateSnippet(newPayload),
+      payload: newPayload,
+    }
+
+    return dispatch(action)
+  }
+}
+
+function markAsCompleted(snippet) {
+  return {
+    completed: !snippet.completed,
+  }
+}
+
+function setThumbUp(snippet) {
+  if (snippet.thumbUp) {
+    return {
+      thumbDown: false,
+      thumbUp: false,
+    }
+  }
+
+  return {
+    thumbDown: false,
+    thumbUp: true,
+  }
+}
+
+function setThumbDown(snippet) {
+  if (snippet.thumbDown) {
+    return {
+      thumbDown: false,
+      thumbUp: false,
+    }
+  }
+
+  return {
+    thumbDown: true,
+    thumbUp: false,
+  }
+}
+
+function setStar(snippet) {
+  return {
+    stared: !snippet.stared,
+  }
+}
+
+function setTags(tags) {
+  return {
+    tags,
   }
 }
 

@@ -7,6 +7,7 @@ const { SHOW_ACTIVE } = VisibilityFilters
 import snippetsActionsTypes from './snippets.action-types'
 const { FETCH_SNIPPETS_SUCCESS, SET_VISIBILITY_TEXT_FILTER } = snippetsActionsTypes
 const { FETCH_SNIPPETS_STANDARD_SUCCESS, COMPLETE_SNIPPET_SUCCESS } = snippetsActionsTypes
+const { UPDATE_SNIPPET_SUCCESS } = snippetsActionsTypes
 
 export { createInitialState }
 export { snippetReducer }
@@ -50,15 +51,22 @@ export function snippetReducer(state = initialState, action = { type: undefined 
 
     case SET_VISIBILITY_TEXT_FILTER:
       return state.set('searchText', action.filter)
+    case UPDATE_SNIPPET_SUCCESS:
     case COMPLETE_SNIPPET_SUCCESS:
       {
-        const { idStr, completed } = action.startedPayload
+        const { idStr, updateFields } = action.startedPayload
+        console.log('updateFields', updateFields)
         return state
-          .setIn([
+          .mergeIn([
             'snippetList',
             state.get('snippetList').findIndex(snippet => snippet.get('idStr') === idStr.toString()),
-            'completed',
-          ], completed)
+          ], { ...updateFields })
+        //return state
+        //  .setIn([
+        //    'snippetList',
+        //    state.get('snippetList').findIndex(snippet => snippet.get('idStr') === idStr.toString()),
+        //    'completed',
+        //  ], completed)
       }
 
     default:

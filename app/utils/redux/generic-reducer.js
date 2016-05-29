@@ -28,7 +28,7 @@ function genericReducer(state, action) {
       ' reducer')
   }
 
-  if (action.type === 'COMPLETE_SNIPPET_STARTED') {
+  if (action.type === 'COMPLETE_SNIPPET_STARTED' || action.type === 'UPDATE_SNIPPET_STARTED') {
     return state
   }
 

@@ -37,9 +37,9 @@ function parseResponseFromDbTweet(data) {
   throw new Error('No data')
 }
 
-function updateSnippet({ idStr, completed }) {
+function updateSnippet({ idStr, updateFields }) {
   const query = {
-    completed,
+    ...updateFields,
   }
   const id = idStr
 
