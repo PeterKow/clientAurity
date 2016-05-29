@@ -201,5 +201,6 @@
       "string-quotes": "single",
       "indentation": 2
     }
-  }
+  },
+  "pre-commit": ["test"]
 }

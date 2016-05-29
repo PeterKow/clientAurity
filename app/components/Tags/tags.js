@@ -14,7 +14,7 @@ class Tags extends Component {
     this.state = { tags: [] }
   }
 
-  componentWillMount(nextProps) {
+  componentWillMount() {
     const { tags } = this.props
     this.setState({
       tags,
@@ -26,11 +26,6 @@ class Tags extends Component {
     this.setState({
       tags,
     })
-  }
-
-  save = (tags) => {
-    const { updateTags } = this.props
-    updateTags(tags)
   }
 
   onBlur = () => {
@@ -45,15 +40,22 @@ class Tags extends Component {
     updateTags(tags)
   }
 
+  save = (tags) => {
+    const { updateTags } = this.props
+    updateTags(tags)
+  }
+
   render() {
+    const onlyUnique = true
+    const addOnPaste = true
     return (
       <TagsInput
         className={ styles.tagBox }
         value={this.state.tags}
         onChange={this.handleChange}
         onBlur={ this.onBlur }
-        onlyUnique={ true }
-        addOnPaste={ true }
+        onlyUnique={ onlyUnique }
+        addOnPaste={ addOnPaste }
       />
     )
   }

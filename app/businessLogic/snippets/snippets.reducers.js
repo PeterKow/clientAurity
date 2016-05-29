@@ -61,12 +61,6 @@ export function snippetReducer(state = initialState, action = { type: undefined 
             'snippetList',
             state.get('snippetList').findIndex(snippet => snippet.get('idStr') === idStr.toString()),
           ], { ...updateFields })
-        //return state
-        //  .setIn([
-        //    'snippetList',
-        //    state.get('snippetList').findIndex(snippet => snippet.get('idStr') === idStr.toString()),
-        //    'completed',
-        //  ], completed)
       }
 
     default:
