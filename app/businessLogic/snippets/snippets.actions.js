@@ -97,10 +97,10 @@ function updateStar(payload) {
   }
 }
 
-function updateTags(payload) {
+function updateTags(payload, tags) {
   return ({ dispatch }) => {
     const { idStr } = payload
-    const newPayload = { idStr, updateFields: setStar(payload) }
+    const newPayload = { idStr, updateFields: setTags(tags) }
     const action = {
       type: UPDATE_SNIPPET,
       promise: updateSnippet(newPayload),

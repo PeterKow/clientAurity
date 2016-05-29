@@ -22,7 +22,7 @@ export default class Snippet extends Component {
 
     const { quotedStatus, created_at, onThumbDown, onThumbUp, onStared, tags } = this.props
     const { idStr, user, onClick, thumbDown, thumbUp, stared, profileImage } = this.props
-    const { favoriteCount, image, text, completed } = this.props
+    const { favoriteCount, image, text, completed, updateTags } = this.props
 
     return (
       <li style={styles(completed)} >
@@ -48,7 +48,10 @@ export default class Snippet extends Component {
                 moment(created_at).format('MMMM DD YYYY, h:mm a')
               }</span>
             </div>
-            <Tags tags={ tags } />
+            <Tags
+              tags={ tags }
+              updateTags={ updateTags }
+            />
 
             <Linkify target="_blank">{ text }</Linkify><br />
             { quotedStatus ? <TextLink content={ quotedStatus } /> : '' }
@@ -87,6 +90,7 @@ Snippet.propTypes = {
   retweetCount: PropTypes.number.isRequired,
   quotedStatus: PropTypes.object,
   connectDragSource: PropTypes.func,
+  updateTags: PropTypes.func.isRequired,
 }
 
 function getStyle(mark) {

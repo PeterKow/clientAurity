@@ -15,13 +15,13 @@ export default function SnippetList({ dispatch, snippetList, isFetching }) {
       {snippetList.map((snippet, index) => {
         const snippetJS = snippet.toJS()
         return (
-          <Snippet {...snippetJS}
+          <Snippet { ...snippetJS }
             key={index}
             onClick={() => dispatch(completeSnippet(snippetJS))}
             onStared={() => dispatch(updateStar(snippetJS))}
             onThumbDown={() => dispatch(thumbDown(snippetJS))}
             onThumbUp={() => dispatch(thumbUp(snippetJS))}
-            saveTags={(tags) => dispatch(updateTags(tags))}
+            updateTags={ tags => dispatch(updateTags(snippetJS, tags))}
           />
         )
       }

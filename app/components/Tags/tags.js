@@ -1,5 +1,4 @@
-  /**
-*
+/**
 * Tags
 *
 */
@@ -15,38 +14,54 @@ class Tags extends Component {
     this.state = { tags: [] }
   }
 
-  handleChange(tags) {
+  componentWillMount(nextProps) {
+    const { tags } = this.props
+    this.setState({
+      tags,
+    })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { tags } = nextProps
+    this.setState({
+      tags,
+    })
+  }
+
+  save = (tags) => {
+    const { updateTags } = this.props
+    updateTags(tags)
+  }
+
+  onBlur = () => {
+    const { updateTags } = this.props
+    const { tags } = this.state
+    updateTags(tags)
+  }
+
+  handleChange = tags => {
     this.setState({ tags })
+    const { updateTags } = this.props
+    updateTags(tags)
   }
 
   render() {
-    return <TagsInput className={ styles.tagBox } value={this.state.tags} onChange={::this.handleChange} />
+    return (
+      <TagsInput
+        className={ styles.tagBox }
+        value={this.state.tags}
+        onChange={this.handleChange}
+        onBlur={ this.onBlur }
+        onlyUnique={ true }
+        addOnPaste={ true }
+      />
+    )
   }
+}
 
-  //  componentWillMount(nextProps) {
-  //    const { tags } = this.props
-  //    this.setState({
-  //      tags,
-  //    })
-  //  }
-  //
-  //  componentWillReceiveProps(nextProps) {
-  //    const { tags } = nextProps
-  //    this.setState({
-  //      tags,
-  //    })
-  //  }
-
-  //  render() {
-  //    const { onSaveTag } = this.props
-  //    const { tags } = this.state
-  //    return (
-  //      <div className={ styles.tags }>
-  //        <Input onChange={ this.onTagChange } value={ tags }/>
-  //        <Button style={{ marginLeft: 5 }} onClick={ () => saveTags(tags) }>Save tags</Button>
-  //      </div>
-  //    )
-  //  }
+Tags.propTypes = {
+  updateTags: React.PropTypes.func.isRequired,
+  tags: React.PropTypes.array.isRequired,
 }
 
 export default Tags;

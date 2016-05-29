@@ -10,6 +10,7 @@ function mapSnippet(data = {}) {
     stared: data.stared || false,
     thumbDown: data.thumbDown || false,
     thumbUp: data.thumbUp || false,
+    tags: data.tags || [],
     profileImage: data.user.profile_image_url_https,
     favoriteCount: data.favorite_count,
     retweeted: data.retweeted,
