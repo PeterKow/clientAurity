@@ -22,7 +22,7 @@ export default class Snippet extends Component {
 
     const { quotedStatus, created_at, onThumbDown, onThumbUp, onStared, tags } = this.props
     const { idStr, user, onClick, thumbDown, thumbUp, stared, profileImage } = this.props
-    const { favoriteCount, image, text, completed, updateTags } = this.props
+    const { favoriteCount, image, text, completed, updateTags, retweetCount } = this.props
 
     return (
       <li style={styles(completed)} >
@@ -53,9 +53,11 @@ export default class Snippet extends Component {
               updateTags={ updateTags }
             />
 
-            <Linkify target="_blank">{ text }</Linkify><br />
+            <Linkify target="_blank">
+              <span style={{ wordWrap: 'break-word' }}>{ text }</span>
+            </Linkify><br />
             { quotedStatus ? <TextLink content={ quotedStatus } /> : '' }
-            Favorite: <b>{favoriteCount}</b> Retweet: <b>{this.props.retweetCount}</b>
+            Favorite: <b>{favoriteCount}</b> Retweet: <b>{ retweetCount }</b>
             { getImage(image) }
           </div>
         </div>
@@ -84,7 +86,7 @@ Snippet.propTypes = {
   text: PropTypes.string.isRequired,
   completed: PropTypes.bool.isRequired,
   profileImage: PropTypes.string,
-  tags: PropTypes.string,
+  tags: PropTypes.array.isRequired,
   image: PropTypes.string,
   favoriteCount: PropTypes.number.isRequired,
   retweetCount: PropTypes.number.isRequired,

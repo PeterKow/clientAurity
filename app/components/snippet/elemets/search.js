@@ -44,7 +44,10 @@ class Search extends Component {
   render() {
     const { userName, retweetCount, favoriteCount } = this.state
     return (
-      <div style={{ display: 'flex', alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
+      <div style={{ display: 'flex', alignItems: 'center', marginTop: 20, marginBottom: 20,
+       flexWrap: 'wrap',
+       }}
+      >
         User:
         <Input className={ styles.smallInput } onChange={ this.onUserChange } value={ userName } />
         <span style={{ marginLeft: 5, marginRight: 5 }}>

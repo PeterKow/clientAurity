@@ -9,7 +9,7 @@ function ListItem(props) {
         { props.content }
       </div>
     </li>
-  );
+  )
 }
 
 export default ListItem;
